@@ -3,6 +3,10 @@
   <p><%= @post.body %></p>
 </div>
 
+<% if @post.user_id == current_user.id  %>
+  <%= link_to 'Delete Post', post_path(@post), method: :delete %>
+<% end %>
+
 <div class="comments">
   <h4>Comments</h4>
   <%= render @comments %>

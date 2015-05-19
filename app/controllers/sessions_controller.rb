@@ -10,7 +10,7 @@ class SessionsController < ApplicationController
       redirect_to root_path
     else
       flash[:warn] = "Couldn't log in"
-      render :new
+      redirect_to root_path
     end
   end
 

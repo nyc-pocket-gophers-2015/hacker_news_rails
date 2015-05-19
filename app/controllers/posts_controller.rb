@@ -24,6 +24,12 @@ class PostsController < ApplicationController
   end
 
   def destroy
+    if @post.destroy!
+      redirect_to root_path
+    else
+      flash[:warn] = 'Post could not be deleted'
+      redirect_to post_path
+    end
   end
 
   private

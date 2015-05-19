@@ -1,5 +1,6 @@
 class CommentsController < ApplicationController
-  before_action :get_post, only: [:new, :create]
+  before_action :get_post, only: [:new, :create, :destroy]
+  before_action :get_comment, only: [:destroy]
   def show
   end
 
@@ -14,6 +15,15 @@ class CommentsController < ApplicationController
     else
       flash[:warn] = "Sorry comment wasn't saved"
       redirect_to new_post_comment_path
+    end
+  end
+
+  def destroy
+    if @comment.destroy!
+      redirect_to post_path(@post)
+    else
+      flash[:warn] = 'Comment was not removed'
+      redirect_to post_comment_path(@post, @comment)
     end
   end
 
