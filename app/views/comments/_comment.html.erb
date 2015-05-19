@@ -1,0 +1,8 @@
+<ul>
+  <li><%= comment.user.name %></li>
+  <li><%= comment.created_at.to_formatted_s(:m_d_y) %></li>
+  <li><%= comment.body %></li>
+  <% if comment.user_id == current_user.id  %>
+    <%= link_to 'Delete Comment', post_comment_path(@post, comment), method: :delete %>
+  <% end %>
+</ul>
