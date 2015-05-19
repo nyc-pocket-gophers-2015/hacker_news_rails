@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :get_post, only: [:show, :destroy]
+  before_action :get_post, only: [:show, :destroy, :edit, :update]
   before_action :get_comments, only: [:show]
   def index
     @posts = Post.all
@@ -29,6 +29,19 @@ class PostsController < ApplicationController
     else
       flash[:warn] = 'Post could not be deleted'
       redirect_to post_path
+    end
+  end
+
+
+  def edit
+  end
+
+  def update
+    if @post.update_attributes(post_params)
+      redirect_to post_path(@post)
+    else
+      flash[:warn] = 'Post not updated'
+      redirect_to post_path(@post)
     end
   end
 
