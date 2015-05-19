@@ -1,0 +1,9 @@
+<h4>Feed</h4>
+<% unless @posts.empty? %>
+  <%= render @posts %>
+<% else %>
+  <h5>There are no posts</h5>
+<% end %>
+
+
+<%= link_to 'Create New Post', new_post_path %>
